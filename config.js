@@ -3,7 +3,7 @@ module.exports={
         host: "192.168.1.12",
         port: 21,
         user: "ftproot",
-        password: "root"
+        password: "*****"
     },
     localDir:"docs",
     serveDir:"/www"
