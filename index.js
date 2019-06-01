@@ -1,20 +1,13 @@
-let fs = require('fs');
-
 let path = require('path');
 let Ftp = require("ftp");
 let config = require("./config");
-let travel = require("./travel")
-
-let serveDir = config.serveDir;
-let localDir = config.localDir;
-
+let travel = require("./utils");
 let client = new Ftp();
-
 
 client.connect(config.serve);
 client.on('ready', function () {
     travel( localDir, function (pathname, next) {
-        let dirName = path.dirname(pathname).replace(localDir, serveDir);
+        let dirName = path.dirname(pathname).replace(config.localDir, config.serveDir);
         let serveFilePath = path.join(dirName, path.basename(pathname));
         client.get(dirName, function (err, list) {
             if (err) {
